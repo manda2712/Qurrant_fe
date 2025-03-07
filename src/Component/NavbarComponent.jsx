@@ -10,18 +10,15 @@ const NavbarComponent = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mx-auto gap-4">
+          {/* <Nav className="mx-auto gap-4">
             <Nav.Link as={NavLink} to="/" className="text-gray-600 hover:text-blue-500">
               Home
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/adminpage" className="text-gray-600 hover:text-blue-500">
+            <Nav.Link as={NavLink} to="/about" className="text-gray-600 hover:text-blue-500">
               About
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/services" className="text-gray-600 hover:text-blue-500">
-              Services
-            </Nav.Link>
-          </Nav>
-          <div className="d-flex gap-4">
+          </Nav> */}
+          <div className="join d-flex gap-4">
             <Link to="/loginregis" className="btn btn-outline-primary">
               Join With Us
             </Link>

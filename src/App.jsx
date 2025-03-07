@@ -1,34 +1,53 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import React from "react";
-
+import React, { useState, useEffect } from "react";
 
 import HomePage from "./HomePage";
-import JuzPage from "./Component/JuzPage"; // Pastikan file ini ada
+import JuzPage from "./Component/JuzPage";
 import NavbarComponent from "./Component/NavbarComponent";
 import AdminPage from "./admin/AdminPage";
-
-// import Tabel from "./Tabel";
+import Beranda from "./admin/Beranda";
 import LoginRegis from "./LoginRegis";
+import ProtectedRoute from "./protectedRoute"; // Sesuaikan dengan nama file di Windows// ✅ Pastikan sesuai dengan nama file!
+
+
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  return (
-    <Router>
-      <div className="container-fluid p-0">
-      <NavbarComponent />
+    const [userRole, setUserRole] = useState(""); 
 
-        <Routes>
-        <Route path="/loginregis" element={<LoginRegis />} />
-          <Route path="/" element={<HomePage />} />
-          <Route path="/juz/:id" element={<JuzPage />} />
-          <Route path="/adminpage" element={<AdminPage />} />
-          {/* <Route path="/tabel" element={<Tabel />} /> */}
-          {/* <Route path="/login" element={<LoginRegis />} /> */}
-        </Routes>
-      </div>
-    </Router>
-  );
+    // ✅ Ambil role dari localStorage saat aplikasi dimuat
+    useEffect(() => {
+        const storedRole = localStorage.getItem("role");
+        if (storedRole) {
+            setUserRole(storedRole);
+        }
+    }, []);
+
+    return (
+        <Router>
+            <div className="container-fluid p-0">
+                <NavbarComponent />
+                <Routes>
+                    {/* ✅ Kirim setUserRole ke LoginRegis */}
+                    <Route path="/loginregis" element={<LoginRegis setUserRole={setUserRole} />} />
+
+                    {/* Halaman Utama User */}
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/juz/:id" element={<JuzPage />} />
+
+                    {/* ✅ Gunakan ProtectedRoute untuk Admin */}
+                    <Route element={<ProtectedRoute allowedRoles={["admin"]} userRole={userRole} />}>
+                        <Route path="/adminpage" element={<AdminPage />} />
+                        <Route path="/beranda" element={<Beranda />} />
+                    </Route>
+
+                    {/* Halaman Tidak Ditemukan */}
+                    <Route path="*" element={<h1>404 - Not Found</h1>} />
+                </Routes>
+            </div>
+        </Router>
+    );
 }
 
 export default App;

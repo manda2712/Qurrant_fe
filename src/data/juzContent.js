@@ -3,7 +3,6 @@ const juzContent = [
       id: 1,
       title: "Juz 1",
       surah: ["Surat Al-Fatihah", "Surat Al-Baqarah ayat 1-141"],
-      ayat: ["1", "2"],
     },
     {
       id: 2,

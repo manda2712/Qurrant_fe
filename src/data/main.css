@@ -259,3 +259,13 @@ textarea {
 .contentlr.active .switch-right{
   transform: translateX(200%);
 }
+
+.join{
+  margin-left: auto;
+}
+
+@media screen and (max-width: 786px){
+.join{
+  margin-left: auto;
+}
+}
