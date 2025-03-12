@@ -80,7 +80,7 @@ const LoginRegis = ({ setUserRole }) => {
                                 value={password} onChange={(e) => setPassword(e.target.value)} required />
                         </div>
                         <div className="input-group mb-3 justify-content-center">
-                            <button type="submit" className="btn btn-primary w-50 fs-6">Daftar</button>
+                            <button type="submit" className="btn btn-primary w-10 fs-6">Daftar</button>
                         </div>
                         <p>{message}</p>
                     </div>
@@ -101,7 +101,7 @@ const LoginRegis = ({ setUserRole }) => {
                                 value={password} onChange={(e) => setPassword(e.target.value)} required />
                         </div>
                         <div className="input-group mb-3 justify-content-center">
-                            <button type="submit" className="btn btn-primary w-50 fs-6">Masuk</button>
+                            <button type="submit" className="btn btn-primary w-10 fs-6">Masuk</button>
                         </div>
                         <p>{message}</p>
                     </div>
@@ -112,14 +112,12 @@ const LoginRegis = ({ setUserRole }) => {
             <div className="switch-content">
                 <div className="switch">
                     <div className="switch-panel switch-left">
-                        <h1>Selamat Datang</h1>
-                        <p>Selamat Datang di QURRANT</p>
-                        <button className="hidden btn text-white w-50 fs-6" onClick={() => setIsRegister(false)}>Login</button>
+                        <h1>Datang Kembali</h1>
+                        <button className="hidden btn border-white text-white w-10 fs-6" onClick={() => setIsRegister(false)}>Login</button>
                     </div>
                     <div className="switch-panel switch-right">
-                        <h1>Halo Lagi</h1>
-                        <p>Kami senang kamu kembali</p>
-                        <button className="hidden btn border-white text-white w-50 fs-6" onClick={() => setIsRegister(true)}>Register</button>
+                        <h1>Selamat Datang</h1>
+                        <button className="hidden btn border-white text-white w-10 fs-6" onClick={() => setIsRegister(true)}>Register</button>
                     </div>
                 </div>
             </div>

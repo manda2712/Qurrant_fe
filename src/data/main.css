@@ -144,7 +144,7 @@ textarea {
   border: 2px solid #A78AFF;
 }
 
-.LoginRegis{
+.LoginRegis {
   background: #5FD068;
   display: flex;
   align-items: center;
@@ -168,6 +168,47 @@ textarea {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+@media screen and (max-width: 786px) {
+  .contentlr {
+    width: 90vw; /* Gunakan 90% dari lebar layar pada mobile */
+    max-width: 300px; /* Batasi agar tidak terlalu besar */
+    padding: 15px;
+    min-height: auto;
+    height: auto;
+    display: flex;
+    border-radius:20px ;
+  }
+
+  .right-box{
+    padding: 20px;
+  }
+
+  .switch-content{
+    width: 100%;
+    right: 0;
+    border-radius: 20px;
+  }
+  .switch{
+    width: 100%;
+    left: 0;
+  }
+
+  .switch-panel{
+    width: 100%;
+    padding: 10px;
+  }
+
+  .header-logreg h1{
+    font-size: 20px
+  }
+
+  .contentlr button{
+    padding: 8px;
+    font-size: 4px;
+  }
+}
+
+
 .contentlr button{
   background-color: #25196C;
   color: #ffffff;
@@ -182,7 +223,7 @@ textarea {
 
 
 .header-logreg h1 {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
 }
 
