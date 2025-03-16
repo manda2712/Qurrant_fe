@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Container, Row, Col, Button, Modal, Form } from "react-bootstrap";
 import juzContent from "./data/juzContent.js";
 
-const API_URL = "http://localhost:3000/api/reading/get/progress"; // Sesuaikan dengan backend kamu
+const API_URL = "https://qurrant.vercel.app/api/reading/get/progress"; // Sesuaikan dengan backend kamu
 
 const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -104,7 +104,7 @@ const HomePage = () => {
         return;
       }
   
-      const checkResponse = await fetch(`http://localhost:3000/api/reading/progress/${selectedJuz}`, {
+      const checkResponse = await fetch(`https://qurrant.vercel.app/api/reading/progress/${selectedJuz}`, {
         method: "GET",
         headers: { "Authorization": `Bearer ${token}` },
       });
@@ -113,11 +113,11 @@ const HomePage = () => {
       console.log("📌 Response GET:", checkResponse.status, result);
   
       let method = "POST";
-      let url = "http://localhost:3000/api/reading/progress";
+      let url = "https://qurrant.vercel.app/api/reading/progress";
   
       if (checkResponse.ok && result.data && result.data.juz === String(selectedJuz)) {
         method = "PUT";
-        url = `http://localhost:3000/api/reading/progress/${selectedJuz}`;
+        url = `https://qurrant.vercel.app/api/reading/progress/${selectedJuz}`;
       }
   
       const response = await fetch(url, {
