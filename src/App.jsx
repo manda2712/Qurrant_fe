@@ -7,7 +7,7 @@ import NavbarComponent from "./Component/NavbarComponent";
 import AdminPage from "./admin/AdminPage";
 import Beranda from "./admin/Beranda";
 import LoginRegis from "./LoginRegis";
-import ProtectedRoute from "./protectedRoute"; // Sesuaikan dengan nama file di Windows// ✅ Pastikan sesuai dengan nama file!
+import ProtectedRoute from "./ProtectedRoute"; // Sesuaikan dengan nama file di Windows// ✅ Pastikan sesuai dengan nama file!
 
 
 

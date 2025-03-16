@@ -160,7 +160,7 @@ const Tabel = () => {
         </tr>
       </thead>
       <tbody>
-        {quranData.map((item, index) => (
+        {quranData.map((item) => (
           <tr key={`${item.juz}-${item.surah}`}>
             <td>{item.juz}</td>
             <td>{item.surah}</td>
