@@ -81,10 +81,17 @@ const HomePage = () => {
       return;
     }
   
+    // Konversi status ke format yang diterima backend
+    const statusMap = {
+      "Belum Dibaca": "belum_dibaca",
+      "Sedang Dilakukan": "Sedang_dilakukan",
+      "Selesai": "Selesai",
+    };
+  
     const progressData = {
       juz: String(selectedJuz),
       surah,
-      status,
+      status: statusMap[status] || "belum_dibaca", // Default jika status tidak cocok
       catatan,
     };
   
@@ -99,39 +106,38 @@ const HomePage = () => {
   
       const checkResponse = await fetch(`http://localhost:3000/api/reading/progress/${selectedJuz}`, {
         method: "GET",
-        headers: { "Authorization": `Bearer ${token}` }
+        headers: { "Authorization": `Bearer ${token}` },
       });
-      
-      const result = await checkResponse.json(); // Simpan hasil JSON
+  
+      const result = await checkResponse.json();
       console.log("📌 Response GET:", checkResponse.status, result);
-      
-      let method = "POST"; // Default pakai POST
-      let url = "http://localhost:3000/api/reading/progress"; 
-      
-      // Pastikan kita update hanya jika ada data dan sesuai dengan Juz yang dipilih
-      if (checkResponse.ok && result.data && result.data.juz === String(selectedJuz)) { 
+  
+      let method = "POST";
+      let url = "http://localhost:3000/api/reading/progress";
+  
+      if (checkResponse.ok && result.data && result.data.juz === String(selectedJuz)) {
         method = "PUT";
         url = `http://localhost:3000/api/reading/progress/${selectedJuz}`;
       }
-      
-      const response = await fetch(url, { 
+  
+      const response = await fetch(url, {
         method,
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
+          "Authorization": `Bearer ${token}`,
         },
         body: JSON.stringify(progressData),
       });
-      
+  
       const responseData = await response.json();
       console.log("📌 Response dari server:", responseData);
-      
+  
       if (!response.ok) {
         throw new Error(`Gagal menyimpan progress: ${responseData.message || response.statusText}`);
       }
-      
-      // Update state untuk menampilkan perubahan tanpa reload
-      const updatedStatus = { ...juzStatus, [selectedJuz]: { status, username } };
+  
+      // Update state
+      const updatedStatus = { ...juzStatus, [selectedJuz]: { status: progressData.status, username } };
       setJuzStatus(updatedStatus);
       localStorage.setItem(`juz_${selectedJuz}_progress`, JSON.stringify(progressData));
   
@@ -140,7 +146,7 @@ const HomePage = () => {
       console.error("❌ Error menyimpan progress:", error.message);
     }
   };
-
+  
   return (
     <>
       <header className="header">
@@ -164,7 +170,7 @@ const HomePage = () => {
             const variant =
               juzData.status === "Selesai"
                 ? "success"
-                : juzData.status === "Sedang Dibaca"
+                : juzData.status === "Sedang_dilakukan"
                 ? "warning"
                 : "secondary";
             return (
@@ -222,3 +228,5 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+
