@@ -5,7 +5,7 @@ import axios from "axios";
 
 // ✅ Buat instance axios dengan baseURL
 const api = axios.create({
-  baseURL: "http://localhost:3000/api", // Sesuaikan dengan URL backend
+  baseURL: "https://qurrant.vercel.app/api", // Sesuaikan dengan URL backend
   headers: { "Content-Type": "application/json" },
 });
 
